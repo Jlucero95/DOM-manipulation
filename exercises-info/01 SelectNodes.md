@@ -1,4 +1,4 @@
-# Selecting a Node and a NodeList #
+# Selecting a Node and a NodeList
 
 ```HTML
 <!-- body contents -->
@@ -11,7 +11,7 @@
 
 The most often used methods to retrieve the item/items from the DOM are the getElementById(), querySelector(), querySelectorAll()
 
-## getElementById('id') ##
+## getElementById('id')
 
 Due to the fact that every ID within one page must be unique this method returns a single Node with the id attribute value equal to the id asked. It returns `null` in case there is no element with such id in the document.
 
@@ -38,7 +38,7 @@ newChild.innerText = 'Item Four';
 item.append(newChild);
 ```
 
-## querySelector('#id' || '.className') ##
+## querySelector('#id' || '.className')
 
 This method returns the FIRST element in the DOM with the class name or id name asked. All others will be ignored. The class/id name is passed as an argument of string with a period symbol in case of class (`.class-name`) or with a hash in case of id (`#id-name`). It returns the same element as getElementById(id) in case id was passed as an argument.
 
@@ -65,7 +65,7 @@ newChild.innerText = 'Item Four';
 item.append(newChild);
 ```
 
-## querySelectorAll('#id' || '.className') ##
+## querySelectorAll('#id' || '.className')
 
 This method returns the list (NodeList) of all the elements in the DOM with the class name passed as the argument. Due to the fact that the id values must be unique within a document it will return a list of a single element when id name is passed as an argument. The node list is not an object-like structure, but it does NOT have access to all the array/object methods.
 
@@ -87,17 +87,16 @@ const deleted = newArr.splice(1, 1);
 newArr.push(deleted[0]);
 // Grab the node of id 'Container'
 const container = document.getElementById('container');
-// Iterate through the array of items and add children to the 
+// Iterate through the array of items and add children to the
 // container Node with a new order of items
 newArr.forEach((item) => {
   container.appendChild(item);
 });
 ```
 
+## getElementsByClassName('className')
 
-## getElementsByClassName('className') ##
-
-This method returns the live HTML Collection (object-like structure) of all the elements found in the DOM with the class name passed as the argument. 
+This method returns the live HTML Collection (object-like structure) of all the elements found in the DOM with the class name passed as the argument.
 
 ```JS
 // Get the list of all the Nodes of class 'item'
@@ -114,7 +113,7 @@ newArr.sort((a, b) => {
 });
 
 // Gran the Node of 'container' id
-// Iterate through the array of items and Add the items 
+// Iterate through the array of items and Add the items
 // into the Node of id 'container' with a new sorted order
 const container = document.getElementById('container');
 newArr.forEach((item) => {
@@ -123,16 +122,15 @@ newArr.forEach((item) => {
 
 ```
 
+## Sources
 
-## Sources ##
-
-* What are Nodes and NodeLists
-  * [DOM Node](https://developer.mozilla.org/en-US/docs/Web/API/Node)
-  * [DOM NodeList](https://developer.mozilla.org/en-US/docs/Web/API/NodeList)
-* Getting a Node by id or class name
-  * [getElementById](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById)
-  * [querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
-* Getting a NodeList
-  * [querySelectorAll](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll)
-* Getting a Live HTML Collection
-  * [getElementsByClassName](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName)
+- What are Nodes and NodeLists
+  - [DOM Node](https://developer.mozilla.org/en-US/docs/Web/API/Node)
+  - [DOM NodeList](https://developer.mozilla.org/en-US/docs/Web/API/NodeList)
+- Getting a Node by id or class name
+  - [getElementById](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById)
+  - [querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
+- Getting a NodeList
+  - [querySelectorAll](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll)
+- Getting a Live HTML Collection
+  - [getElementsByClassName](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName)

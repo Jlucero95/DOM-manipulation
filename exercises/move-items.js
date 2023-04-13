@@ -2,7 +2,7 @@
  * SORTING NODES WITHIN A CONTAINER
  * Please, make sure to read the following files in the exercises-info folder before you start
  * * 01 SelectNodes.md
-*/
+ */
 
 /**
  * @task
@@ -11,9 +11,7 @@
  * Example: const allItems = <Your code>;
  */
 
-// Your code goes here...
-
-
+const allItems = document.querySelectorAll(".item");
 
 /**
  * @task
@@ -22,9 +20,7 @@
  * Example: const main = <Your code>
  * */
 
-// Your code goes here
-
-
+const main = document.getElementById("main");
 
 /**
  * @task
@@ -33,9 +29,7 @@
  * Example: const favs = <Your code>;
  */
 
-// Your code goes here
-
-
+const favs = document.getElementById("favs");
 
 /**
  * @task
@@ -46,9 +40,25 @@
  * Changes the icon of the element: fa-heart-circle-plus for main, fa-heart-crack for favs items.
  */
 
-// Your code goes here
-
-
+function updateCollections(id, direction) {
+	const element = document.getElementById(id);
+	const heartIcon = element.querySelector(
+		".fa-heart-circle-plus, .fa-heart-crack"
+	);
+	if (direction === "toMain") {
+		direction = "toFavs";
+		element.parentNode.removeChild(element);
+		favs.appendChild(element);
+		heartIcon.classList.remove("fa-heart-circle-plus");
+		heartIcon.classList.add("fa-heart-crack");
+	} else if (direction === "toFavs") {
+		direction = "toMain";
+		element.parentNode.removeChild(element);
+		main.appendChild(element);
+		heartIcon.classList.remove("fa-heart-crack");
+		heartIcon.classList.add("fa-heart-circle-plus");
+	}
+}
 
 /**
  * @task
@@ -64,6 +74,17 @@
  * * Make the updateCollections function call, assign the item Id and the direction defined above
  */
 
-// Your code goes here...
-
-
+allItems.forEach((item) => {
+	item.addEventListener("click", function () {
+		const child = this;
+		const parent = child.parentElement;
+		const parentId = parent.id;
+		let direction;
+		if (parentId === "main") {
+			direction = "toMain";
+		} else if (parentId === "favs") {
+			direction = "toFavs";
+		}
+		updateCollections(child.id, direction);
+	});
+});
