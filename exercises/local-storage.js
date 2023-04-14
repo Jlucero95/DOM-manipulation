@@ -22,6 +22,13 @@
  * * * Add the item's id to the local storage
  * * Make all the items that are listed in the favorites LS save the red background color when the page is reloaded
  */
+const onClick = (el) => {
+	const el = document.querySelectorAll("[data-fav]");
+	if (el === "false") {
+		el.dataset.fav = "true";
+		el.style.background = "red";
+	}
+};
 
 /**
  * @hint
