@@ -10,8 +10,7 @@
  * Store them in the allItems variable
  * Example: const allItems = <Your code>;
  */
-
-const allItems = document.querySelectorAll("item");
+const allItems = document.querySelectorAll(".item");
 
 /**
  * @task
@@ -20,7 +19,7 @@ const allItems = document.querySelectorAll("item");
  * Example: const sortBtn = <Your code>;
  */
 
-const sortBtn = document.getElementsByClassName("sortBtn");
+const sortBtn = document.querySelectorAll(".sortBtn");
 
 /**
  * @task
@@ -33,7 +32,21 @@ const sortBtn = document.getElementsByClassName("sortBtn");
  * Example: sortData('asc') => <a-z order of items in the main container>
  */
 
-function sortData(asc, desc) {}
+function sortData(direction) {
+	const container = document.getElementById("main");
+	const newArr = Array.from(allItems);
+	const orderOfElements = (a, b) => {
+		if (direction === "asc") {
+			return 1;
+		} else if (direction === "desc") {
+			return -1;
+		} else {
+			return 0;
+		}
+	};
+	newArr.sort(orderOfElements);
+	newArr.forEach((item) => container.appendChild(item));
+}
 
 /**
  * @task
@@ -43,4 +56,14 @@ function sortData(asc, desc) {}
  * * Make the sortData function call, assign the item's dataset sortdir property
  */
 
-// Your code goes here...
+sortBtn.forEach((item) => {
+	item.addEventListener("click", function () {
+		const asc = document.querySelector('[data-sortdir = "asc"]');
+		const desc = document.querySelector('[data-sortdir = "desc"]');
+		if (item === asc) {
+			sortData("asc");
+		} else if (item === desc) {
+			sortData("desc");
+		}
+	});
+});
