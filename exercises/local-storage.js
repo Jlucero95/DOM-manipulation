@@ -22,13 +22,6 @@
  * * * Add the item's id to the local storage
  * * Make all the items that are listed in the favorites LS save the red background color when the page is reloaded
  */
-const onClick = (el) => {
-	const el = document.querySelectorAll("[data-fav]");
-	if (el === "false") {
-		el.dataset.fav = "true";
-		el.style.background = "red";
-	}
-};
 
 /**
  * @hint
@@ -44,4 +37,27 @@ const onClick = (el) => {
  * * add the event listener to the container, pass the callback.
  */
 
-// Your code goes here...
+const containerTwo = document.querySelectorAll(".card");
+
+const itemArr = Array.from(containerTwo);
+
+const favArr = JSON.parse(localStorage.getItem("Favorites")) || [];
+
+itemArr.forEach((card) => {
+	if (favArr.includes(card.id)) {
+		card.style.backgroundColor = "red";
+	}
+	card.addEventListener("click", () => {
+		if (!favArr.includes(card.id)) {
+			favArr.push(card.id);
+			card.style.backgroundColor = "red";
+			localStorage.setItem("Favorites", JSON.stringify(favArr));
+		} else {
+			favArr.splice(favArr.indexOf(card.id), 1);
+			card.style.backgroundColor = "white";
+			localStorage.setItem("Favorites", JSON.stringify(favArr));
+		}
+	});
+	const favStorage = localStorage.getItem("Favorites");
+	const newData = JSON.parse(favStorage);
+});
