@@ -45,19 +45,14 @@ function updateCollections(id, direction) {
 	const heartIcon = element.querySelector(
 		".fa-heart-circle-plus, .fa-heart-crack"
 	);
-	if (direction === "toMain") {
-		direction = "toFavs";
-		element.parentNode.removeChild(element);
-		favs.appendChild(element);
-		heartIcon.classList.remove("fa-heart-circle-plus");
-		heartIcon.classList.add("fa-heart-crack");
-	} else if (direction === "toFavs") {
-		direction = "toMain";
-		element.parentNode.removeChild(element);
-		main.appendChild(element);
-		heartIcon.classList.remove("fa-heart-crack");
-		heartIcon.classList.add("fa-heart-circle-plus");
-	}
+	const iconArr = ["fa-heart-circle-plus", "fa-heart-crack"];
+	const params =
+		direction === "toMain" ? [favs, iconArr] : [main, iconArr.reverse()];
+
+	element.parentNode.removeChild(element);
+	params[0].appendChild(element);
+	heartIcon.classList.remove(params[1][0]);
+	heartIcon.classList.add(params[1][1]);
 }
 
 /**

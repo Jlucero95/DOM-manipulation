@@ -57,13 +57,8 @@ function sortData(direction) {
  */
 
 sortBtn.forEach((item) => {
+	const direction = item.dataset.sortdir;
 	item.addEventListener("click", function () {
-		const asc = document.querySelector('[data-sortdir = "asc"]');
-		const desc = document.querySelector('[data-sortdir = "desc"]');
-		if (item === asc) {
-			sortData("asc");
-		} else if (item === desc) {
-			sortData("desc");
-		}
+		sortData(direction);
 	});
 });

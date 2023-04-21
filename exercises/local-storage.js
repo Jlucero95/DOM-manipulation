@@ -37,27 +37,42 @@
  * * add the event listener to the container, pass the callback.
  */
 
-const containerTwo = document.querySelectorAll(".card");
+const container = document.querySelector(".cardsContainer");
 
-const itemArr = Array.from(containerTwo);
+const favorites = localStorage.getItem("favorites");
 
-const favArr = JSON.parse(localStorage.getItem("Favorites")) || [];
+const favArr = JSON.parse(localStorage.getItem("favorites")) || [];
+localStorage.setItem("favorites", JSON.stringify(favArr));
 
-itemArr.forEach((card) => {
+const changeBackground = (card) => {
+	const item = card.target.id;
+	const elm = card.target;
+
 	if (favArr.includes(card.id)) {
 		card.style.backgroundColor = "red";
 	}
-	card.addEventListener("click", () => {
-		if (!favArr.includes(card.id)) {
-			favArr.push(card.id);
-			card.style.backgroundColor = "red";
-			localStorage.setItem("Favorites", JSON.stringify(favArr));
+	if (Array.from(elm.classList).includes("card")) {
+		if (!favArr.includes(item)) {
+			favArr.push(item);
+			elm.style.backgroundColor = "red";
+			localStorage.setItem("favorites", JSON.stringify(favArr));
 		} else {
-			favArr.splice(favArr.indexOf(card.id), 1);
-			card.style.backgroundColor = "white";
-			localStorage.setItem("Favorites", JSON.stringify(favArr));
+			favArr.splice(favArr.indexOf(item), 1);
+			elm.style.backgroundColor = "white";
+			localStorage.setItem("favorites", JSON.stringify(favArr));
+		}
+	}
+};
+
+const checkFavorites = () => {
+	const cards = document.querySelectorAll(".card");
+	cards.forEach((card) => {
+		if (favArr.includes(card.id)) {
+			card.style.backgroundColor = "red";
 		}
 	});
-	const favStorage = localStorage.getItem("Favorites");
-	const newData = JSON.parse(favStorage);
-});
+};
+
+container.addEventListener("click", changeBackground);
+
+checkFavorites();
