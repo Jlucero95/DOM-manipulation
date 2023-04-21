@@ -48,9 +48,6 @@ const changeBackground = (card) => {
 	const item = card.target.id;
 	const elm = card.target;
 
-	if (favArr.includes(card.id)) {
-		card.style.backgroundColor = "red";
-	}
 	if (Array.from(elm.classList).includes("card")) {
 		if (!favArr.includes(item)) {
 			favArr.push(item);
